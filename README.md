@@ -1,2 +1,2 @@
-# cv-boulders
- Automatic recognition of boulders
+# PebDec
+ Automatic detection of the pebble percentage in rockslope images.
