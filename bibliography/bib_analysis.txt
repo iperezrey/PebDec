@@ -1,0 +1,17 @@
+Crida1995: could have some useful ideas for thresholding ans so on...
+
+Dawkins: could be useful.
+
+Latif2022: algorithim 1 -> for grain segmentation: uses histogram equalization which is what I asked ChatGPT about.
+
+Maitre2019: read the first paragraph of section 3 so we can see the level of retrictions for the setting of the pictures.
+
+Niekun: "3. Algorithm Survey" -> important read as it may contain the algorithmic solution to our problem.
+
+Noever: we could use their approach -> labelling the rocks and train + test.
+
+Purington2019: very similar to what we want to. Bilateral filter will probably be key.
+
+https://medium.com/@sumandeep.banerjee/counting-grains-of-rice-corona-quarantine-blues-44eaba6d3598
+
+https://github.com/UP-RS-ESP/PebbleCounts
