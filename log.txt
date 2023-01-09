@@ -1,0 +1,43 @@
+---------- XR 04/01/2023 ----------
+En lo relativo a PebDec, David me comentó que hay librerías como scikit-image have the basis image processing tools that we could begin
+with but this will most likely be a waste of time. Maybe, just for the purpose of learning. A paper would not get accepted today with just
+this methods implemented.
+
+Best best thing to do would be to try CNN (oriented for image segmentation). The architecture of the system would be the following:
+
+Font-end: read the image and turn into a numpy array (maybe converte into grayscale).
+
+Back-end: CNN that takes as input the numpy array.
+
+These are the resources that he sent me and we should look into.
+
+[scikit-image](https://scikit-image.org/)
+
+[Chen2022](https://esurf.copernicus.org/articles/10/349/2022/)
+
+[source code and data from Chen2022](https://zenodo.org/record/5240906#.Y7QkfHaZND9 || This repository contains data sets and model used in the manuscript "CNN for image-based
+sediment detection applied to a large terrestrial and airborne dataset" submitted to Earth Surface Dynamics (2021) by Xingyu Chen, Marwan A.
+Hassan, and Xudong Fu.)
+
+[Buscombe2018](https://www.mdpi.com/2076-3263/8/7/244)
+
+[Roznial2019](https://ethz.ch/content/dam/ethz/special-interest/baug/igp/photogrammetry-remote-sensing-dam/documents/pdf/Student_Theses/IPA_Rozniak.pdf)
+
+The key task we should search for when trying to find other works is "image segmentation".
+
+Additionally, the color information in the image and consequently the general histogram would not be interesing. Better use grayscale.
+
+---------- XR 04/01/2023 ----------
+Comments on the materiales linked above
+
+I have reviewed scikit-image: it has some interesting operations that we could try such as:
+
+	Histogram matching
+	Canny edge detector
+	Sobel
+	Gamma and log contrast adjustment
+	Histogram equalization
+
+Chen2022 introduces a the use of a cnn to measure the sizes of sediment. Their method is based on U-net.
+The source code and datasets are in the folders GrainID_ChenX.zip and Data sets.zip. 
+This last file was to heave to be uploaded to the remote. Remains local
