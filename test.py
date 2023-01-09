@@ -15,9 +15,9 @@ class Image:
         cv2.waitKey(0)
         cv2.destroyAllWindows()
         return img_gray
-    
 
-img = Image('fotos/test_image.jpeg')
+if __name__ == '__main__':
 
-img.convert2gray()
+    img = Image('fotos/test_image.jpeg')
 
+    img.convert2gray()
