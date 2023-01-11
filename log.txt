@@ -41,3 +41,7 @@ I have reviewed scikit-image: it has some interesting operations that we could t
 Chen2022 introduces a the use of a cnn to measure the sizes of sediment. Their method is based on U-net.
 The source code and datasets are in the folders GrainID_ChenX.zip and Data sets.zip. 
 This last file was to heave to be uploaded to the remote. Remains local
+
+---------- XR 04/01/2023 ----------
+Buscombe2018 introduces the use of a conditional random field to assign labels to each pixel in the image
+and based on that it trains the cnn. Very interesting work but Chen2022 is closer to our current problem.

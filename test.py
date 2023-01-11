@@ -2,7 +2,7 @@ import cv2
 
 class Image:
     
-    def __init__(self, name, image) -> None:
+    def __init__(self, name) -> None:
         self.name = name
         self.image = cv2.imread(self.name, cv2.IMREAD_COLOR)
     
@@ -18,6 +18,6 @@ class Image:
 
 if __name__ == '__main__':
 
-    img = Image('fotos/test_image.jpeg')
+    img = Image('images/IMG_6669.jpeg')
 
     img.convert2gray()
