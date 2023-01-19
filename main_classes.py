@@ -34,7 +34,7 @@ class Picture():
 
 if __name__== '__main__':
 
-    img = Picture('images/IMG_6646.JPEG')
+    img = Picture('images/test_1.jpg')
 
     img.convert2gray()
 
