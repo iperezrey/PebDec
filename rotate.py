@@ -19,4 +19,4 @@ for image_name in image_names:
         img.rotate(img, cv2.ROTATE_90_CLOCKWISE)
 
         # Save the image
-        img.imwrite(f'images_original/{image_name}', img)
+        img.imwrite(f'images_original/{image_name}_rotated.JPEG', img)
