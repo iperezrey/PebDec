@@ -95,9 +95,9 @@ for contour in contours:
 # Displaying image
 cv2.imshow('image test', img_contour)
 
-# cv2.imshow('laplace', img_laplace)
-# cv2.imshow('soble', img_sobelxy)
-# cv2.imshow('canny', img_canny)
+cv2.imshow('laplace', img_laplace)
+cv2.imshow('soble', img_sobelxy)
+cv2.imshow('canny', img_canny)
 
 # Set visualization time (0 means forever)
 cv2.waitKey()

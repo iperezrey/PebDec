@@ -1,5 +1,5 @@
 import os
-# import cv2
+import cv2
 
 # Get the names of all images in the directory
 image_names = os.listdir('images_original')
@@ -11,12 +11,12 @@ for image_name in image_names:
     img = cv2.imread(f'images_original/{image_name}')
 
     # Get image size
-    h, w = img.shape()
+    (h, w) = img.shape[:2]
 
     if (h == 1536) and (w == 2048):
 
         # Rotate the image 90 degrees clockwise
-        img.rotate(img, cv2.ROTATE_90_CLOCKWISE)
+        img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
 
         # Save the image
-        img.imwrite(f'images_original/rotated_{image_name}', img)
+        cv2.imwrite(f'images_original/rotated_{image_name}', img)

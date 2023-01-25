@@ -1,0 +1,16 @@
+The two main are TensorFlow and PyTorch (Keras is within TensorFlow)
+
+Here are the tutorials that I found:
+
+[TensorFlow1] (https://www.youtube.com/watch?v=tPYj3fFJGjk&list=PLaIF3A2IPm06mzZBHHoojqleokcQkGYal&index=33&t=21709s&ab_channel=freeCodeCamp.org)
+
+[TensorFlow2] (https://www.youtube.com/watch?v=tpCFfeUEGs8&ab_channel=DanielBourke)
+
+[PyTorch1] (https://www.youtube.com/watch?v=c36lUUr864M&ab_channel=PatrickLoeber)
+
+[PyTorch2] (https://www.youtube.com/watch?v=V_xro1bcAuA&ab_channel=freeCodeCamp.org)
+
+[Keras] (https://www.youtube.com/watch?v=qFJeN9V1ZsI&ab_channel=freeCodeCamp.org)
+
+Based on the info that I could find, TensorFlow is the ideal tool for the development of the second
+part of the thesis and PyTorch could be better for computer vision problems.
