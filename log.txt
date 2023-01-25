@@ -46,7 +46,7 @@ This last file was to heave to be uploaded to the remote. Remains local
 Buscombe2018 introduces the use of a conditional random field to assign labels to each pixel in the image
 and based on that it trains the cnn. Very interesting work but Chen2022 is closer to our current problem.
 
----------- IP y XR 18/01/2023 ----------
+---------- IP y XR 19/01/2023 ----------
 Después de haber probado varias técnicas filtrado, detección de bordes y detección de esquinas, decidimos
 optar por la implementación de un red neuronal.
 
