@@ -14,3 +14,9 @@ Here are the tutorials that I found:
 
 Based on the info that I could find, TensorFlow is the ideal tool for the development of the second
 part of the thesis and PyTorch could be better for computer vision problems.
+
+Computer vision tutorials:
+
+[OpenCV Course - Full Tutorial with Python] https://www.youtube.com/watch?v=oXlwWbU8l2o&t=4521s&ab_channel=freeCodeCamp.org
+
+[Advanced Computer Vision with Python - Full Course] https://www.youtube.com/watch?v=01sAkU_NvOY&t=4s
