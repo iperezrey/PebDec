@@ -63,3 +63,7 @@ and within the neural network sobel or canny edge detector as well as harris cor
 ---------- XR 25/01/2023 ----------
 Xurxo mete todos los tests de detección de bordes en el archivo edge_deteciton.py. Añade la prueba con
 Sobel, Canny y la detección de contornos.
+
+---------- XR 03/02/2023 ----------
+Hemos terminado de generar las imágenes. Los siguientes pasos sería formarnos en la aplicación de 
+aprendizaje automático a nuestro problema además de ver como etiquetar las imágenes.
