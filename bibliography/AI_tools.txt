@@ -1,3 +1,5 @@
+Section 1: TUtorials
+
 The two main are TensorFlow and PyTorch (Keras is within TensorFlow)
 
 Here are the tutorials that I found:
@@ -20,3 +22,14 @@ Computer vision tutorials:
 [OpenCV Course - Full Tutorial with Python] https://www.youtube.com/watch?v=oXlwWbU8l2o&t=4521s&ab_channel=freeCodeCamp.org
 
 [Advanced Computer Vision with Python - Full Course] https://www.youtube.com/watch?v=01sAkU_NvOY&t=4s
+
+
+Section 2: Image Labelling
+
+[Label Studio] https://labelstud.io/
+
+[CVAT] https://github.com/opencv/cvat
+
+[VGG Image Annotator (VIA)] https://www.robots.ox.ac.uk/~vgg/software/via/
+
+[other tools] https://datagen.tech/guides/image-annotation/image-annotation-tool/
