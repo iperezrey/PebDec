@@ -74,5 +74,13 @@ Ver como etiquetar las imágenes.
 Xurxo: recalcar el curso de DL (hay que tener algo de experiencia con Python): https://www.coursera.org/specializations/deep-learning
 
 ---------- AC, XR and IP 09/02/2023 ----------
-
 Recordar uso básico de LabelStudio. Repartir imágenes a etiquetar. Consultar si se puede acceder desde tres cuentas. Diseñar un criterio de etiquetado. Comenzar a etiquetar.
+
+---------- AC, XR and IP 09/02/2023 ----------
+Parece que no podemos trabajar con la misma cuenta sobre el mismo proyecto de Label Studio. La solución a este problema es crear y cada uno nuestro proyecto por separado y exportar los labels. Para ello, la división de la base de datos a etiquetar es la siguiente:
+Número total de imágenes: 6912.
+Número de imágenes a etiquetar: 5376.
+Imágenes Nacho: [6646, 6671].
+Imágenes Sito: [6672, 6717].
+Imágenes Xurxo: [6719, 6762].
+
