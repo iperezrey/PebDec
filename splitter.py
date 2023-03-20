@@ -22,11 +22,11 @@ def splitter(image_name):
         cropped_image = image[y:y_end,x:x_end]
         # cv2.imshow('test_img',cropped_image)
         # cv2.waitKey(100)
-        cv2.imwrite(f'images/{image_name}_{i}.jpeg', cropped_image)
+        cv2.imwrite(f'images/{image_name[:-5]}_{i}.jpeg', cropped_image)
         
         # Rotates cropped image and saves it
         rot_cropped_image = cv2.rotate(cropped_image, cv2.ROTATE_90_CLOCKWISE)
-        cv2.imwrite(f'images/{image_name}_{i}_rot.jpeg', rot_cropped_image)
+        cv2.imwrite(f'images/{image_name[:-5]}_{i}_rot.jpeg', rot_cropped_image)
 
         print(i)
         print(x, y, x_end, y_end)
