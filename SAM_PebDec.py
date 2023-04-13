@@ -6,11 +6,15 @@ import sys
 sys.path.append('..')
 from segment_anything import sam_model_registry, SamAutomaticMaskGenerator, SamPredictor
 
-image = cv.imread('C:/Users/Andres/OneDrive - Universidade de Vigo/Escritorio/andres/PebDec/images_original/IMG_6674.JPEG')
+image = cv.imread('D:/software/PebDec/images_original/IMG_6710.JPEG')
 # cv.imshow('ImgPrueba', img)
 image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
 # cv.imshow('ImgPruebaRGB', img)
 # cv.waitKey(0)
+
+# Extract height and width of the image
+print(image.shape[:2])
+(h,w) = image.shape[:2]
 
 plt.figure(figsize=(7,7))
 plt.imshow(image)
@@ -19,7 +23,7 @@ plt.show()
 
 sam_checkpoint = 'sam_vit_h_4b8939.pth'
 model_type = 'vit_h'
-device = 'cpu'
+device = 'cuda'
 
 sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
 sam.to(device=device)
@@ -27,7 +31,7 @@ sam.to(device=device)
 
 mask_generator_ = SamAutomaticMaskGenerator(
     model=sam,
-    points_per_side=28,
+    points_per_side=32,
     pred_iou_thresh=0.9,
     stability_score_thresh=0.96,
     crop_n_layers=1,
@@ -59,10 +63,15 @@ def show_anns(anns):
             img[:,:,i] = color_mask[i]
         ax.imshow(np.dstack((img, m*0.35)))
     print(f"Total mask area: {total_area:.2f} sq. pixels")  # print total area
-
+    
+    return total_area
 
 plt.figure(figsize=(7, 7))
 plt.imshow(image)
-show_anns(masks)
+total_area = show_anns(masks)
 plt.axis('off')
 plt.show()
+
+# Percentage of pixels (pebbles)
+percentage = total_area / (h * w)
+print(percentage)
