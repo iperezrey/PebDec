@@ -22,6 +22,6 @@ for image_name in image_names:
 
     img_resized = rescaleFrame(frame=img, scale=0.5)
     print(img_resized.shape[:2])
-    
+
     # Save the resized images
     cv2.imwrite(f'images_lowres/{image_name[:-5]}_res.jpeg', img_resized)
