@@ -90,7 +90,6 @@ for mask in masks:
 
 # Plot the histogram of mask areas
 plt.hist(list_mask_areas, bins=20, rwidth=0.7)
-plt.title('Mask histogram')
 plt.xlabel('Mask area (sq. pixels)')
 plt.ylabel('Frequency')
 plt.show()
@@ -98,3 +97,4 @@ plt.show()
 # Percentage of pixels (pebbles)
 percentage = total_area / (h * w)
 print(percentage)
+
