@@ -6,6 +6,7 @@ import cv2 as cv
 import sys
 sys.path.append('..')
 from segment_anything import sam_model_registry, SamAutomaticMaskGenerator, SamPredictor
+import pandas as pd
 
 image = cv.imread('images_lowres/IMG_6674_res.JPEG')
 image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
@@ -14,6 +15,9 @@ image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
 # Extract height and width of the image
 print(image.shape[:2])
 (h,w) = image.shape[:2]
+
+blank = np.zeros((image.shape), dtype='uint8') # reate an empty image to represent later all the masks
+
 
 # Show the img
 plt.figure(figsize=(7,7))
@@ -74,13 +78,19 @@ def show_anns(anns):
     
     return total_area
 
-    
+
 # Plot the image with the masks
-plt.figure(figsize=(7, 7))
+plt.figure(1, figsize=(7, 7))
 plt.imshow(image)
-total_area = show_anns(masks)
+total_area = show_anns(masks) # This definition is to calculate later the percentage of pixels
 plt.axis('off')
-plt.show()
+
+# Plot the mask over a blank image
+plt.figure(2, figsize=(7, 7))
+plt.imshow(blank)
+total_area
+plt.axis('off')
+
 
 # Generate an histogram of mask areas
 list_mask_areas = []
@@ -89,6 +99,7 @@ for mask in masks:
     list_mask_areas.append(area)
 
 # Plot the histogram of mask areas
+plt.figure(3, figsize=(7,7))
 plt.hist(list_mask_areas, bins=20, rwidth=0.7)
 plt.title('Mask histogram')
 plt.xlabel('Mask area (sq. pixels)')
@@ -98,3 +109,4 @@ plt.show()
 # Percentage of pixels (pebbles)
 percentage = total_area / (h * w)
 print(percentage)
+    

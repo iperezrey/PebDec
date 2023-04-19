@@ -15,6 +15,9 @@ image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
 print(image.shape[:2])
 (h,w) = image.shape[:2]
 
+# blank = np.zeros((image.shape), dtype='uint8') # reate an empty image to represent later all the masks
+
+
 # Show the img
 plt.figure(figsize=(7,7))
 plt.imshow(image)
@@ -76,11 +79,29 @@ def show_anns(anns):
 
     
 # Plot the image with the masks
-plt.figure(figsize=(7, 7))
+plt.figure(1, figsize=(7, 7))
 plt.imshow(image)
-total_area = show_anns(masks)
+total_area = show_anns(masks) # This definition is to calculate later the percentage of pixels
 plt.axis('off')
 plt.show()
+
+# Create a blank image to represent all the masks
+blank = np.zeros((image.shape), dtype='uint8')
+
+# Iterate through the masks and draw each mask on the blank image
+for mask in masks:
+    # Convert the mask to a numpy array and reshape it to a 2D array of integers
+    mask_np = np.array(mask['segmentation'], dtype=np.int32).reshape((-1, 2))
+
+    # Draw the mask on the blank image
+    cv.fillPoly(blank, [mask_np], (255, 0, 0))
+
+# Display the resulting image
+plt.figure(figsize=(7,7))
+plt.imshow(blank)
+plt.axis('off')
+plt.show()
+
 
 # Generate an histogram of mask areas
 list_mask_areas = []
@@ -90,11 +111,13 @@ for mask in masks:
 
 # Plot the histogram of mask areas
 plt.hist(list_mask_areas, bins=20, rwidth=0.7)
+plt.title('Mask histogram')
 plt.xlabel('Mask area (sq. pixels)')
 plt.ylabel('Frequency')
 plt.show()
 
+
+
 # Percentage of pixels (pebbles)
 percentage = total_area / (h * w)
 print(percentage)
-
