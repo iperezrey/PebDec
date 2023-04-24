@@ -1,14 +1,13 @@
-
 import numpy as np
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
+import matplotlib.cm as cm
 import cv2 as cv
 import sys
 sys.path.append('..')
 from segment_anything import sam_model_registry, SamAutomaticMaskGenerator, SamPredictor
-import pandas as pd
 
-image = cv.imread('images_original/IMG_6674.JPEG')
+image = cv.imread('images_lowres/IMG_6674_res.JPEG')
 image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
 
 
@@ -38,7 +37,7 @@ mask_generator_ = SamAutomaticMaskGenerator(
     model=sam,
     points_per_side=32,
     points_per_batch=64,
-    pred_iou_thresh=0.9,
+    pred_iou_thresh=0.9, # The lower the threshold the more objects will pick up
     stability_score_thresh=0.96,
     stability_score_offset=1.0, # The amount to shift the cutoff when calculated the stability score.
     box_nms_thresh=0.7,
@@ -53,7 +52,7 @@ mask_generator_ = SamAutomaticMaskGenerator(
 
 masks = mask_generator_.generate(image)
 
-# print(len(masks))
+# print(masks)
 
 def show_anns(anns):
     if len(anns) == 0:
@@ -64,31 +63,35 @@ def show_anns(anns):
     polygons = []
     color = []
     total_area = 0.0  # initialize total area to zero
-    for ann in sorted_anns:
+    for  ann in sorted_anns:
         m = ann['segmentation']
         mask_area = np.count_nonzero(m) * 1.0
         total_area += mask_area # add current mask area to total area
         # print(f"Mask area: {mask_area:.2f} sq. pixels")
-        img = np.ones((m.shape[0], m.shape[1], 3))
-        color_mask = np.random.random((1, 3)).tolist()[0]
-        for i in range(3):
-            img[:,:,i] = color_mask[i]
-        ax.imshow(np.dstack((img, m*0.35)))
+        color = cm.rainbow(mask_area/np.max([ann['area'] for ann in anns]))
+        color_mask = np.zeros_like(image)
+        color_mask[:, :, 0] = color[0] * 255
+        color_mask[:, :, 1] = color[1] * 255
+        color_mask[:, :, 2] = color[2] * 255
+        alpha_mask = (m*0.35).astype(np.uint8)*255
+        if alpha_mask.max() > 0:  # only show mask if there are any non-zero alpha values
+            color_mask = cv.cvtColor(color_mask, cv.COLOR_RGB2RGBA)
+            color_mask[:, :, 3] = alpha_mask
+            ax.imshow(color_mask)
     print(f"Total mask area: {total_area:.2f} sq. pixels")  # print total area
-    
-    return total_area
+    return total_area, color_mask
 
 
 # Plot the image with the masks
 plt.figure(1, figsize=(7, 7))
 plt.imshow(image)
-total_area = show_anns(masks) # This definition is to calculate later the percentage of pixels
+total_area, color_mask = show_anns(masks)
 plt.axis('off')
 
 # Plot the mask over a blank image
 plt.figure(2, figsize=(7, 7))
 plt.imshow(blank)
-total_area = show_anns(masks)
+total_area, color_mask = show_anns(masks)
 plt.axis('off')
 
 # Generate an histogram of mask areas

@@ -6,6 +6,7 @@ import cv2 as cv
 import sys
 sys.path.append('..')
 from segment_anything import sam_model_registry, SamAutomaticMaskGenerator, SamPredictor
+import pandas as pd
 
 image = cv.imread('images_lowres/IMG_6674_res.JPEG')
 image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
@@ -15,7 +16,7 @@ image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
 print(image.shape[:2])
 (h,w) = image.shape[:2]
 
-# blank = np.zeros((image.shape), dtype='uint8') # reate an empty image to represent later all the masks
+blank = np.zeros((image.shape), dtype='uint8') # create an empty image to represent later all the masks
 
 
 # Show the img
@@ -52,7 +53,7 @@ mask_generator_ = SamAutomaticMaskGenerator(
 
 masks = mask_generator_.generate(image)
 
-print(len(masks))
+# print(len(masks))
 
 def show_anns(anns):
     if len(anns) == 0:
@@ -63,13 +64,17 @@ def show_anns(anns):
     polygons = []
     color = []
     total_area = 0.0  # initialize total area to zero
+    max_area = sorted_anns[0]['area']
     for ann in sorted_anns:
         m = ann['segmentation']
         mask_area = np.count_nonzero(m) * 1.0
         total_area += mask_area # add current mask area to total area
-        print(f"Mask area: {mask_area:.2f} sq. pixels")
+        # print(f"Mask area: {mask_area:.2f} sq. pixels")
         img = np.ones((m.shape[0], m.shape[1], 3))
-        color_mask = np.random.random((1, 3)).tolist()[0]
+        color_mask = np.array([0.7, 0.7, 0.7]) # default color
+        if max_area > 0:
+            relative_size = mask_area / max_area
+            color_mask = np.array([1.0-relative_size, 0.7, relative_size])
         for i in range(3):
             img[:,:,i] = color_mask[i]
         ax.imshow(np.dstack((img, m*0.35)))
@@ -77,31 +82,19 @@ def show_anns(anns):
     
     return total_area
 
-    
+
+
 # Plot the image with the masks
 plt.figure(1, figsize=(7, 7))
 plt.imshow(image)
 total_area = show_anns(masks) # This definition is to calculate later the percentage of pixels
 plt.axis('off')
-plt.show()
 
-# Create a blank image to represent all the masks
-blank = np.zeros((image.shape), dtype='uint8')
-
-# Iterate through the masks and draw each mask on the blank image
-for mask in masks:
-    # Convert the mask to a numpy array and reshape it to a 2D array of integers
-    mask_np = np.array(mask['segmentation'], dtype=np.int32).reshape((-1, 2))
-
-    # Draw the mask on the blank image
-    cv.fillPoly(blank, [mask_np], (255, 0, 0))
-
-# Display the resulting image
-plt.figure(figsize=(7,7))
+# Plot the mask over a blank image
+plt.figure(2, figsize=(7, 7))
 plt.imshow(blank)
+total_area = show_anns(masks)
 plt.axis('off')
-plt.show()
-
 
 # Generate an histogram of mask areas
 list_mask_areas = []
@@ -110,14 +103,14 @@ for mask in masks:
     list_mask_areas.append(area)
 
 # Plot the histogram of mask areas
+plt.figure(3, figsize=(7,7))
 plt.hist(list_mask_areas, bins=20, rwidth=0.7)
 plt.title('Mask histogram')
 plt.xlabel('Mask area (sq. pixels)')
 plt.ylabel('Frequency')
 plt.show()
 
-
-
 # Percentage of pixels (pebbles)
 percentage = total_area / (h * w)
-print(percentage)
+print(f'Percentage of pebbles : {percentage:.4f}')
+
