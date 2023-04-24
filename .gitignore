@@ -1,5 +1,8 @@
 #ignore model
 sam_vit_h_4b8939.pth
 
+# ignore the results
+sorted_anns.npy
+
 #ignore venv
 venv
