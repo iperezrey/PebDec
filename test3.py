@@ -10,13 +10,11 @@ from segment_anything import sam_model_registry, SamAutomaticMaskGenerator, SamP
 image = cv.imread('images_lowres/IMG_6674_res.JPEG')
 image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
 
-
 # Extract height and width of the image
 print(image.shape[:2])
 (h,w) = image.shape[:2]
 
 blank = np.zeros((image.shape), dtype='uint8') # create an empty image to print over later all the masks
-
 
 # Show the img
 plt.figure(figsize=(7,7))
@@ -30,7 +28,6 @@ device = 'cpu'
 
 sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
 sam.to(device=device)
-
 
 # Create the masks using SamAutomaticMaskGenerator from Segment_anything
 mask_generator_ = SamAutomaticMaskGenerator(
@@ -124,7 +121,7 @@ plt.imshow(blank)
 total_area = show_anns(masks, color_by_size=True)
 plt.axis('off')
 
-# Generate an histogram of mask areas
+# Generate a histogram of mask areas
 list_mask_areas = []
 for mask in masks:
     area = np.count_nonzero(mask['segmentation']) * 1.0
@@ -139,5 +136,5 @@ plt.ylabel('Frequency')
 plt.show()
 
 # Percentage of pixels (pebbles)
-percentage = total_area / (h * w)
-print(f'Percentage of pebbles : {percentage:.4f}')
+percentage = (total_area / (h * w)) * 100
+print(f'Percentage of pebbles: {percentage:.2f}%')
