@@ -53,9 +53,9 @@ sam.to(device=device)
 # Create the masks using SamAutomaticMaskGenerator from Segment_anything
 mask_generator_ = SamAutomaticMaskGenerator(
     model=sam,
-    points_per_side=32,
+    points_per_side=24,
     points_per_batch=64,
-    pred_iou_thresh=1.3, # The lower the threshold the more objects will pick up
+    pred_iou_thresh=0.9, # The lower the threshold the more objects will pick up
     stability_score_thresh=0.96,
     stability_score_offset=1.0, # The amount to shift the cutoff when calculated the stability score.
     box_nms_thresh=0.7,
