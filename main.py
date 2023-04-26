@@ -42,11 +42,6 @@ print(image.shape[:2])
 
 blank = np.zeros((image.shape), dtype='uint8') # create an empty image to print over later all the masks
 
-# Show the img
-plt.figure(figsize=(7,7))
-plt.imshow(image)
-plt.axis('off')
-plt.show()
 
 sam_checkpoint = 'sam_vit_h_4b8939.pth'
 model_type = 'vit_h'
@@ -60,7 +55,7 @@ mask_generator_ = SamAutomaticMaskGenerator(
     model=sam,
     points_per_side=32,
     points_per_batch=64,
-    pred_iou_thresh=0.9, # The lower the threshold the more objects will pick up
+    pred_iou_thresh=1.3, # The lower the threshold the more objects will pick up
     stability_score_thresh=0.96,
     stability_score_offset=1.0, # The amount to shift the cutoff when calculated the stability score.
     box_nms_thresh=0.7,
@@ -142,6 +137,12 @@ def show_anns(anns, color_by_size):
     
     print(f"Total mask area: {total_area:.2f} sq. pixels")  # print total area
     return total_area
+
+# Show the original img
+plt.figure(figsize=(7,7))
+plt.imshow(image)
+plt.axis('off')
+plt.show()
 
 
 # Plot the image with the masks

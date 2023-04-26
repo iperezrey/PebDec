@@ -189,6 +189,5 @@ for name in list_images:
         # Percentage of pixels (pebbles)
         percentage = (total_area / (h * w)) * 100
         print(f'Percentage of pebbles: {percentage:.2f}%')
-        text_file = open('results/'+ name[4:8] + '/' + 'percentage_pebbles_' + name[4:8] +'.txt', 'w')
-        text_file.write(f'Percentage of pebbles: {percentage:.2f}%')
-        text_file.close()
+        with open(f'results/{name[4:8]}/percentage_pebbles_{name[4:8]}.txt', 'a') as text_file:
+            text_file.write(f'Percentage of pebbles for pred_iou_thresh={pred_iou_thresh:.2f}: {percentage:.2f}%\n')
