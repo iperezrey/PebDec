@@ -33,7 +33,9 @@ def map_to_rainbow(lst):
     return [list(mcolors.hex2color(mcolors.rgb2hex(color))) for color in colors]
 
 def show_anns(anns, color_by_size):
-    """Describe what the function does
+    """
+    Represent the masks over the original image and over a blank image. It also calculates 
+    the total area of the masks (sq. pixels)
     -----------
     Arguments:
     anns (dict) -- dictionary containing 7 elements: 'segmentation', 'area', 'bbox', 'predicted_iou', 

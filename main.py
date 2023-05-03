@@ -73,7 +73,9 @@ masks = mask_generator_.generate(image)
 # print(masks)
 
 def show_anns(anns, color_by_size):
-    """Describe what the function does
+    """
+    Represents the masks over the original image and over a blank image. It also calculates 
+    the total area of the masks (sq. pixels)
     -----------
     Arguments:
     anns (dict) -- dictionary containing 7 elements: 'segmentation', 'area', 'bbox', 'predicted_iou', 

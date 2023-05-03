@@ -5,7 +5,7 @@ import numpy as np
 edge detection methods"""
 
 """FAST Method"""
-# # Reading the image and converting it to b&w
+# Reading the image and converting it to b&w 
 # image = cv2.imread('images_original/IMG_6747.jpeg')
 # image_graysc = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 
@@ -19,13 +19,14 @@ edge detection methods"""
 
 # # Displaying image
 # cv2.imshow('FAST',kp_image)
+# cv2.imwrite('results/Methods/FAST Method/FAST_method.jpg', kp_image)
 
 # # Set visualization time (0 means forever)
 # cv2.waitKey()
 
 """ORB Method"""
 # # Read the image and convert to grayscale
-# image = cv2.imread('images_original/test_1.jpg')
+# image = cv2.imread('images_original/IMG_6701.jpeg')
 # gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 # # Applying Oriented FAST and Rotated Brief
@@ -37,6 +38,7 @@ edge detection methods"""
 
 # # Show the results
 # cv2.imshow('ORB', kp_image)
+# cv2.imwrite('results/Methods/ORB Method/ORB_Method.jpg', kp_image)
 # cv2.waitKey()
 
 """Harris corner detector"""
@@ -55,6 +57,7 @@ edge detection methods"""
 
 # # Displaying image
 # cv2.imshow('image_gs_test',image)
+# cv2.imwrite('results/Methods/Harris corner detector/Harris_method.jpg', image)
 
 # # Set visualization time (0 means forever)
 # cv2.waitKey()
@@ -75,10 +78,13 @@ sobely = cv2.Sobel(src=img_blur, ddepth=cv2.CV_64F, dx=0, dy=1, ksize=5) # Sobel
 img_sobelxy = cv2.Sobel(src=img_blur, ddepth=cv2.CV_64F, dx=1, dy=1, ksize=5) # Combined X and Y Sobel Edge Detection
 
 # Canny Edge Detection
-img_canny = cv2.Canny(image=img_blur, threshold1=100, threshold2=200) 
+img_canny = cv2.Canny(image=img_blur, threshold1=50, threshold2=100) 
 
 # Apply binary thresholding
-ret, thresh = cv2.threshold(img_blur, 150, 255, cv2.THRESH_BINARY) # here we can pass the blur image or canny filtered
+ret, thresh = cv2.threshold(img_canny, 150, 255, cv2.THRESH_BINARY) # here we can pass the blur image or canny filtered
+
+# Convert binary image to CV_8UC1 format (in Laplace and Sobel)
+thresh = cv2.convertScaleAbs(thresh)
 
 # Contour detection
 img_contour = img.copy()
@@ -94,10 +100,15 @@ for contour in contours:
 
 # Displaying image
 cv2.imshow('image test', img_contour)
+cv2.imwrite('results/Methods/Sobel_Canny_Laplacian_contour detection/Canny contours.jpg', img_contour)
+
 
 cv2.imshow('laplace', img_laplace)
+cv2.imwrite('results/Methods/Sobel_Canny_Laplacian_contour detection/Laplacian.jpg', img_laplace)
 cv2.imshow('soble', img_sobelxy)
+cv2.imwrite('results/Methods/Sobel_Canny_Laplacian_contour detection/Sobel.jpg', img_sobelxy)
 cv2.imshow('canny', img_canny)
+cv2.imwrite('results/Methods/Sobel_Canny_Laplacian_contour detection/Canny.jpg', img_canny)
  
 # Set visualization time (0 means forever)
 cv2.waitKey()
