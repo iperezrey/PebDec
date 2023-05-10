@@ -108,11 +108,11 @@ device = 'cpu'
 sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
 sam.to(device=device)
 
-list_images = ['IMG_6648_res.JPEG', 'IMG_6662_res.JPEG', 'IMG_6666_res.JPEG', 'IMG_6682_res.JPEG', 'IMG_6701_res.JPEG', 'IMG_6710_res.JPEG', 'IMG_6716_res.JPEG', 'IMG_6720_res.JPEG', 'IMG_6750_res.JPEG', 'IMG_6762_res.JPEG']
+list_images = ['IMG_6687_res.JPEG']
 
 for name in list_images:
 
-    for points_per_side in range(16, 44, 2):
+    for points_per_side in range(4, 44, 2):
 
         print(name, points_per_side)
 
@@ -122,8 +122,8 @@ for name in list_images:
 
         # Extract height and width of the image
         print(image.shape[:2])
-        (h,w) = image.shape[:2]
-        
+        (h, w) = image.shape[:2]
+
 
         # Create the masks using SamAutomaticMaskGenerator from Segment_anything
         mask_generator_ = SamAutomaticMaskGenerator(

@@ -32,7 +32,7 @@ def map_to_rainbow(lst):
     # Convert the colors to hexadecimal format and return as a list of strings
     return [list(mcolors.hex2color(mcolors.rgb2hex(color))) for color in colors]
 
-num_image = '6648'
+num_image = '6720'
 image = cv.imread('images_lowres/IMG_'+ num_image +'_res.JPEG')
 image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
 
@@ -53,7 +53,7 @@ sam.to(device=device)
 # Create the masks using SamAutomaticMaskGenerator from Segment_anything
 mask_generator_ = SamAutomaticMaskGenerator(
     model=sam,
-    points_per_side=42,
+    points_per_side=20,
     points_per_batch=64,
     pred_iou_thresh=0.9, # The lower the threshold the more objects will pick up
     stability_score_thresh=0.96,
@@ -141,22 +141,22 @@ def show_anns(anns, color_by_size):
     return total_area
 
 # Show the original img
-plt.figure(figsize=(7,7))
-plt.imshow(image)
-plt.axis('off')
-plt.show()
+# plt.figure(figsize=(7,7))
+# plt.imshow(image)
+# plt.axis('off')
+# plt.show()
 
 # Plot the image with the masks
-plt.figure(1, figsize=(7, 7))
-plt.imshow(image)
-total_area = show_anns(masks, color_by_size=True)
-plt.axis('off')
+# plt.figure(1, figsize=(7, 7))
+# plt.imshow(image)
+# total_area = show_anns(masks, color_by_size=True)
+# plt.axis('off')
 
-# Plot the mask over a blank image
-plt.figure(2, figsize=(7, 7))
-plt.imshow(blank)
-total_area = show_anns(masks, color_by_size=True)
-plt.axis('off')
+# # Plot the mask over a blank image
+# plt.figure(2, figsize=(7, 7))
+# plt.imshow(blank)
+# total_area = show_anns(masks, color_by_size=True)
+# plt.axis('off')
 
 # Generate a histogram of mask areas
 list_mask_areas = []
@@ -170,11 +170,5 @@ plt.hist(list_mask_areas, bins=20, rwidth=0.7)
 plt.title('Mask histogram IMG ' + num_image)
 plt.xlabel('Mask area (sq. pixels)')
 plt.ylabel('Frequency')
+plt.savefig('results/histograms/' + num_image + '.jpg', dpi=300)
 plt.show()
-
-# Percentage of pixels (pebbles)
-percentage = (total_area / (h * w)) * 100
-print(f'Percentage of pebbles: {percentage:.2f}%')
-text_file = open('results/'+ num_image + '/' + 'percentage_pebbles_' + num_image +'.txt', 'w')
-text_file.write(f'Percentage of pebbles: {percentage:.2f}%')
-text_file.close()
