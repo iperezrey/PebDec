@@ -2,48 +2,48 @@ import matplotlib.pyplot as plt
 import cv2 as cv
 
 
-# figsize = (10, 10)
-# rows = 1
-# columns = 3
+figsize = (10, 10)
+rows = 1
+columns = 3
 
 """ Plot the images with the masks """
-# img_num = '6762'
+img_num = '6673'
 
-# img_original = cv.imread('results/' + img_num + '/IMG_' + img_num + '_original (1).JPEG')
-# img_original = cv.cvtColor(img_original, cv.COLOR_BGR2RGB)
+img_original = cv.imread('results/' + img_num + '/IMG_' + img_num + '_original (1).JPEG')
+img_original = cv.cvtColor(img_original, cv.COLOR_BGR2RGB)
 
-# img_masked = cv.imread('results/' + img_num + '/IMG_' + img_num + '_42_masked (1).JPEG')
-# img_masked = cv.cvtColor(img_masked, cv.COLOR_BGR2RGB)
+img_masked = cv.imread('results/' + img_num + '/IMG_' + img_num + '_42_masked (1).JPEG')
+img_masked = cv.cvtColor(img_masked, cv.COLOR_BGR2RGB)
 
-# masks = cv.imread('results/' + img_num + '/IMG_' + img_num + '_42_masks (1).JPEG')
-# masks = cv.cvtColor(masks, cv.COLOR_BGR2RGB)
+masks = cv.imread('results/' + img_num + '/IMG_' + img_num + '_42_masks (1).JPEG')
+masks = cv.cvtColor(masks, cv.COLOR_BGR2RGB)
 
-# #Create the figure
-# fig = plt.figure(figsize=figsize)
+#Create the figure
+fig = plt.figure(figsize=figsize)
 
-# #Add firts image
-# fig.add_subplot(rows, columns, 1)
+#Add firts image
+fig.add_subplot(rows, columns, 1)
 
-# plt.imshow(img_original)
-# plt.axis('off')
-# plt.title('IMG '+ img_num)
+plt.imshow(img_original)
+plt.axis('off')
+plt.title('IMG '+ img_num)
 
-# #Add second image
-# fig.add_subplot(rows, columns, 2)
+#Add second image
+fig.add_subplot(rows, columns, 2)
 
-# plt.imshow(img_masked)
-# plt.axis('off')
-# plt.title('IMG ' + img_num + ' masked')
+plt.imshow(img_masked)
+plt.axis('off')
+plt.title('IMG ' + img_num + ' masked')
 
-# #Add third image
-# fig.add_subplot(rows, columns, 3)
+#Add third image
+fig.add_subplot(rows, columns, 3)
 
-# plt.imshow(masks)
-# plt.axis('off')
-# plt.title('IMG ' + img_num + ' masks')
+plt.imshow(masks)
+plt.axis('off')
+plt.title('IMG ' + img_num + ' masks')
 
-# plt.savefig('results/' + img_num + '/' + img_num + 'figure.JPEG', dpi=300)
-# plt.show()
+plt.savefig('results/' + img_num + '/' + img_num + 'figure.JPEG', dpi=300)
+plt.show()
 
 """ Plot the histograms """
 # figsizeh = (15, 15)
