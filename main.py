@@ -145,7 +145,7 @@ plt.figure(figsize=(7,7))
 plt.imshow(image)
 plt.axis('off')
 # plt.show()
-plt.savefig(f'results/{num_image}/IMG_{num_image}_original.JPEG')
+# plt.savefig(f'results/{num_image}/IMG_{num_image}_original.JPEG')
 plt.close()
 
 # Plot the image with the masks
@@ -153,7 +153,7 @@ plt.figure(1, figsize=(7, 7))
 plt.imshow(image)
 total_area = show_anns(masks, color_by_size=True)
 plt.axis('off')
-plt.savefig(f'results/{num_image}/IMG_{num_image}_42_masked.JPEG')
+# plt.savefig(f'results/{num_image}/IMG_{num_image}_42_masked.JPEG')
 plt.close()
 
 # Plot the mask over a blank image
@@ -161,7 +161,7 @@ plt.figure(2, figsize=(7, 7))
 plt.imshow(blank)
 total_area = show_anns(masks, color_by_size=True)
 plt.axis('off')
-plt.savefig(f'results/{num_image}/IMG_{num_image}_42_masks.JPEG')
+# plt.savefig(f'results/{num_image}/IMG_{num_image}_42_masks.JPEG')
 plt.close()
 
 
@@ -177,7 +177,7 @@ plt.hist(list_mask_areas, bins=20, rwidth=0.7)
 plt.title('Mask histogram IMG ' + num_image)
 plt.xlabel('Mask area (sq. pixels)')
 plt.ylabel('Frequency')
-plt.savefig(f'results/{num_image}/IMG_{num_image}_42_histogram.JPEG')
+# plt.savefig(f'results/{num_image}/IMG_{num_image}_42_histogram.JPEG')
 # plt.show()
 plt.close()
 
