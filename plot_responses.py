@@ -4,7 +4,7 @@ import numpy as np
 import seaborn as sns
  
 data = pd.read_excel('responses.xlsx')
-data_bp = pd.read_excel('responses.xlsx', skiprows=[1])
+data_bp = pd.read_excel('responses.xlsx', skiprows=[1]) # skiprows skips the raw where are the result of SAM
  
  
 x_labels = ['6648'] + ['6662'] + ['6666'] + ['6673'] + ['6701'] + ['6710'] + ['6716'] + ['6720'] + ['6750'] + ['6762']
