@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.lines as mlines
 import numpy as np
 import seaborn as sns
  
@@ -47,8 +48,15 @@ legend_average = plt.Line2D([],
                             linestyle='None', 
                             label='Average'
                             )
-
-handles=[legend_SAM, legend_average]
+legend_outlayer = mlines.Line2D([],
+                                [],
+                                marker='x',
+                                color='k',
+                                linestyle='None',
+                                markersize=8,
+                                label='outlayer'
+                                )
+handles=[legend_SAM, legend_average, legend_outlayer]
 
 # Plot the legends
 plt.legend(loc='lower right', handles=handles)
