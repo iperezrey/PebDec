@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
 import numpy as np
 import seaborn as sns
+plt.style.use('ggplot')
  
 data = pd.read_excel('responses.xlsx')
 data_bp = pd.read_excel('responses.xlsx', skiprows=[1]) # skiprows skips the raw where are the result of SAM
@@ -54,11 +55,11 @@ legend_outlayer = mlines.Line2D([],
                                 color='k',
                                 linestyle='None',
                                 markersize=8,
-                                label='outlayer'
+                                label='Outlayer'
                                 )
 handles=[legend_SAM, legend_average, legend_outlayer]
 
 # Plot the legends
-plt.legend(loc='lower right', handles=handles)
+plt.legend(loc='lower right', handles=handles, facecolor='white')
 
 plt.show()

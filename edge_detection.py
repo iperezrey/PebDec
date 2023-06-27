@@ -5,24 +5,24 @@ import numpy as np
 edge detection methods"""
 
 """FAST Method"""
-# Reading the image and converting it to b&w 
-image = cv2.imread('images_original/IMG_6701.jpeg')
-image_graysc = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+# # Reading the image and converting it to b&w 
+# image = cv2.imread('images_original/IMG_6701.jpeg')
+# image_graysc = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 
-# Application of the FAST function
-fast = cv2.FastFeatureDetector_create()
-fast.setNonmaxSuppression(False)
+# # Application of the FAST function
+# fast = cv2.FastFeatureDetector_create()
+# fast.setNonmaxSuppression(False)
 
-# Drawing the keypoints
-kp = fast.detect(image_graysc,None)
-kp_image = cv2.drawKeypoints(image,kp,None,color=(0,255,0))
+# # Drawing the keypoints
+# kp = fast.detect(image_graysc,None)
+# kp_image = cv2.drawKeypoints(image,kp,None,color=(0,255,0))
 
-# Displaying image
-cv2.imshow('FAST',kp_image)
+# # Displaying image
+# cv2.imshow('FAST',kp_image)
 # cv2.imwrite('results/Methods/FAST Method/FAST_method.jpg', kp_image)
 
-# Set visualization time (0 means forever)
-cv2.waitKey()
+# # Set visualization time (0 means forever)
+# cv2.waitKey()
 
 """ORB Method"""
 # # Read the image and convert to grayscale
