@@ -1,0 +1,14 @@
+Percentage of pebbles for points_per_side=16.00: 12.24%
+Percentage of pebbles for points_per_side=18.00: 14.79%
+Percentage of pebbles for points_per_side=20.00: 15.61%
+Percentage of pebbles for points_per_side=22.00: 15.87%
+Percentage of pebbles for points_per_side=24.00: 17.92%
+Percentage of pebbles for points_per_side=26.00: 21.61%
+Percentage of pebbles for points_per_side=28.00: 20.33%
+Percentage of pebbles for points_per_side=30.00: 21.75%
+Percentage of pebbles for points_per_side=32.00: 121.42%
+Percentage of pebbles for points_per_side=34.00: 120.14%
+Percentage of pebbles for points_per_side=36.00: 26.16%
+Percentage of pebbles for points_per_side=38.00: 120.32%
+Percentage of pebbles for points_per_side=40.00: 27.73%
+Percentage of pebbles for points_per_side=42.00: 25.35%

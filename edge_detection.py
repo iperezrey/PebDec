@@ -5,8 +5,8 @@ import numpy as np
 edge detection methods"""
 
 """FAST Method"""
-# # Reading the image and converting it to b&w
-# image = cv2.imread('images_original/IMG_6747.jpeg')
+# # Reading the image and converting it to b&w 
+# image = cv2.imread('images_original/IMG_6701.jpeg')
 # image_graysc = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 
 # # Application of the FAST function
@@ -19,13 +19,14 @@ edge detection methods"""
 
 # # Displaying image
 # cv2.imshow('FAST',kp_image)
+# cv2.imwrite('results/Methods/FAST Method/FAST_method.jpg', kp_image)
 
 # # Set visualization time (0 means forever)
 # cv2.waitKey()
 
 """ORB Method"""
 # # Read the image and convert to grayscale
-# image = cv2.imread('images_original/test_1.jpg')
+# image = cv2.imread('images_original/IMG_6701.jpeg')
 # gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 # # Applying Oriented FAST and Rotated Brief
@@ -37,6 +38,7 @@ edge detection methods"""
 
 # # Show the results
 # cv2.imshow('ORB', kp_image)
+# cv2.imwrite('results/Methods/ORB Method/ORB_Method.jpg', kp_image)
 # cv2.waitKey()
 
 """Harris corner detector"""
@@ -55,49 +57,58 @@ edge detection methods"""
 
 # # Displaying image
 # cv2.imshow('image_gs_test',image)
+# cv2.imwrite('results/Methods/Harris corner detector/Harris_method.jpg', image)
 
 # # Set visualization time (0 means forever)
 # cv2.waitKey()
 
 """Sobel/Canny/Laplacian + contour detection"""
-# Read the image and convert to grayscale
-img = cv2.imread('images_original/IMG_6701.jpeg')
-img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+# # Read the image and convert to grayscale
+# img = cv2.imread('images_original/IMG_6701.jpeg')
+# img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-# Apply Gaussian blur
-img_blur = cv2.GaussianBlur(img_gray, (13, 13), 0)
+# # Apply Gaussian blur
+# img_blur = cv2.GaussianBlur(img_gray, (13, 13), 0)
 
-# Apply different filters: Sobel, Canny or Laplace
-img_laplace = cv2.Laplacian(src=img_blur, ddepth=cv2.CV_64F)
+# # Apply different filters: Sobel, Canny or Laplace
+# img_laplace = cv2.Laplacian(src=img_blur, ddepth=cv2.CV_64F)
 
-sobelx = cv2.Sobel(src=img_blur, ddepth=cv2.CV_64F, dx=1, dy=0, ksize=5) # Sobel Edge Detection on the X axis
-sobely = cv2.Sobel(src=img_blur, ddepth=cv2.CV_64F, dx=0, dy=1, ksize=5) # Sobel Edge Detection on the Y axis
-img_sobelxy = cv2.Sobel(src=img_blur, ddepth=cv2.CV_64F, dx=1, dy=1, ksize=5) # Combined X and Y Sobel Edge Detection
+# sobelx = cv2.Sobel(src=img_blur, ddepth=cv2.CV_64F, dx=1, dy=0, ksize=5) # Sobel Edge Detection on the X axis
+# sobely = cv2.Sobel(src=img_blur, ddepth=cv2.CV_64F, dx=0, dy=1, ksize=5) # Sobel Edge Detection on the Y axis
+# img_sobelxy = cv2.Sobel(src=img_blur, ddepth=cv2.CV_64F, dx=1, dy=1, ksize=5) # Combined X and Y Sobel Edge Detection
 
-# Canny Edge Detection
-img_canny = cv2.Canny(image=img_blur, threshold1=100, threshold2=200) 
+# # Canny Edge Detection
+# img_canny = cv2.Canny(image=img_blur, threshold1=50, threshold2=100) 
 
-# Apply binary thresholding
-ret, thresh = cv2.threshold(img_blur, 150, 255, cv2.THRESH_BINARY) # here we can pass the blur image or canny filtered
+# # Apply binary thresholding
+# ret, thresh = cv2.threshold(img_canny, 150, 255, cv2.THRESH_BINARY) # here we can pass the blur image or canny filtered
 
-# Contour detection
-img_contour = img.copy()
-contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-for contour in contours:
-    area = cv2.contourArea(contour)
-    if area > 100:
-        cv2.drawContours(img_contour, contour, -1, (255, 10, 0), 2)
-        perimeter = cv2.arcLength(contour, True)
-        corners = cv2.approxPolyDP(contour, 0.015 * perimeter, True)
-        x, y, width, height = cv2.boundingRect(corners)
-        cv2.rectangle(img_contour, (x, y), (x+width, y+height), (0, 255, 0), 2) # Maybe change for a circle
+# # Convert binary image to CV_8UC1 format (in Laplace and Sobel)
+# thresh = cv2.convertScaleAbs(thresh)
 
-# Displaying image
-cv2.imshow('image test', img_contour)
+# # Contour detection
+# img_contour = img.copy()
+# contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+# for contour in contours:
+#     area = cv2.contourArea(contour)
+#     if area > 100:
+#         cv2.drawContours(img_contour, contour, -1, (255, 10, 0), 2)
+#         perimeter = cv2.arcLength(contour, True)
+#         corners = cv2.approxPolyDP(contour, 0.015 * perimeter, True)
+#         x, y, width, height = cv2.boundingRect(corners)
+#         cv2.rectangle(img_contour, (x, y), (x+width, y+height), (0, 255, 0), 2) # Maybe change for a circle
 
-cv2.imshow('laplace', img_laplace)
-cv2.imshow('soble', img_sobelxy)
-cv2.imshow('canny', img_canny)
+# # Displaying image
+# cv2.imshow('image test', img_contour)
+# cv2.imwrite('results/Methods/Sobel_Canny_Laplacian_contour detection/Canny contours.jpg', img_contour)
+
+
+# cv2.imshow('laplace', img_laplace)
+# cv2.imwrite('results/Methods/Sobel_Canny_Laplacian_contour detection/Laplacian.jpg', img_laplace)
+# cv2.imshow('soble', img_sobelxy)
+# cv2.imwrite('results/Methods/Sobel_Canny_Laplacian_contour detection/Sobel.jpg', img_sobelxy)
+# cv2.imshow('canny', img_canny)
+# cv2.imwrite('results/Methods/Sobel_Canny_Laplacian_contour detection/Canny.jpg', img_canny)
  
-# Set visualization time (0 means forever)
-cv2.waitKey()
+# # Set visualization time (0 means forever)
+# cv2.waitKey()

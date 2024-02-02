@@ -2,7 +2,6 @@
 import os
 import cv2
 
-
 def splitter(image_name):
 
     # Read image from folder
@@ -39,5 +38,11 @@ def splitter(image_name):
             x_end = 256
             y += 256
             y_end += 256
+
+if __name__ == '__main__':
     
-  
+    image_names = os.listdir('images_original')
+    for image_name in image_names:
+        
+        splitter(image_name=image_name)
+    

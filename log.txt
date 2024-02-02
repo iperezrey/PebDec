@@ -84,3 +84,8 @@ Imágenes Nacho: [6646, 6671].
 Imágenes Sito: [6672, 6717].
 Imágenes Xurxo: [6719, 6762].
 
+---------- AC, XR and IP 24/04/2023 ----------
+Durante la Semana Santa el proyecto tuvo un cambio de rumbo.
+Meta AI publicó SAM (segment anything) y lo hemos implementado (Sito) para nuestro caso. 
+Los resultados han sido muy buenos. Por ello, ahora estamos en fase de sacar los resultados y escribir el artículo.
+
