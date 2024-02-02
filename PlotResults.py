@@ -6,32 +6,65 @@ rows = 1
 columns = 2
 
 
-""" FAST METHOD RESULT """
-FastMethod = cv.imread('results/Methods/FAST Method/FAST_method.jpg')
-FastMethod = cv.cvtColor(FastMethod, cv.COLOR_BGR2RGB)
-ImgOrigFAST = cv.imread('results/Methods/FAST Method/IMG_6747.jpeg')
-ImgOrigFAST = cv.cvtColor(ImgOrigFAST, cv.COLOR_BGR2RGB)
+""" WATERSHED METHOD """
+# plot results with original image
+oimg = cv.imread('images_watershed_algorithm/IMG_6762_res.jpeg') 
+oimg = cv.cvtColor(oimg, cv.COLOR_BGR2RGB)
+img = cv.imread('images_watershed_algorithm/Watershed_6762.jpeg')
+img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
 
-#Create the figure
-figFast = plt.figure(figsize=figsize)
+# Create the figure
+figsize = (10, 7)
+rows = 1
+columns = 2
+watrershedFig = plt.figure(figsize=figsize)
 
 #Add firts image
-figFast.add_subplot(rows, columns, 2)
+watrershedFig.add_subplot(rows, columns, 2)
 
-plt.imshow(FastMethod)
+plt.imshow(img)
 plt.axis('off')
-plt.title('FAST method')
 
-#Add second image
-figFast.add_subplot(rows, columns, 1)
+# Add second image
+watrershedFig.add_subplot(rows, columns, 1)
 
-plt.imshow(ImgOrigFAST)
+plt.imshow(oimg)
 plt.axis('off')
-plt.title('Original image')
-
-#Save the figure
-# plt.savefig('results/Methods/FAST Method/FAST mehtod figure.jpg', dpi=300)
+plt.savefig('images_watershed_algorithm/Figure_6762_watershed.jpeg', dpi=300)
 plt.show()
+
+
+
+
+
+
+
+""" FAST METHOD RESULT """
+# FastMethod = cv.imread('results/Methods/FAST Method/FAST_method.jpg')
+# FastMethod = cv.cvtColor(FastMethod, cv.COLOR_BGR2RGB)
+# ImgOrigFAST = cv.imread('results/Methods/FAST Method/IMG_6747.jpeg')
+# ImgOrigFAST = cv.cvtColor(ImgOrigFAST, cv.COLOR_BGR2RGB)
+
+# #Create the figure
+# figFast = plt.figure(figsize=figsize)
+
+# #Add firts image
+# figFast.add_subplot(rows, columns, 2)
+
+# plt.imshow(FastMethod)
+# plt.axis('off')
+# plt.title('FAST method')
+
+# #Add second image
+# figFast.add_subplot(rows, columns, 1)
+
+# plt.imshow(ImgOrigFAST)
+# plt.axis('off')
+# plt.title('Original image')
+
+# #Save the figure
+# # plt.savefig('results/Methods/FAST Method/FAST mehtod figure.jpg', dpi=300)
+# plt.show()
 
 
 """ HARRIS CORNER DETECTOR RESULTS """

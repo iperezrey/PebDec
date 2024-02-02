@@ -32,7 +32,7 @@ def map_to_rainbow(lst):
     # Convert the colors to hexadecimal format and return as a list of strings
     return [list(mcolors.hex2color(mcolors.rgb2hex(color))) for color in colors]
 
-num_image = '6720'
+num_image = '6762'
 image = cv.imread('images_lowres/IMG_'+ num_image +'_res.JPEG')
 image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
 
@@ -53,7 +53,7 @@ sam.to(device=device)
 # Create the masks using SamAutomaticMaskGenerator from Segment_anything
 mask_generator_ = SamAutomaticMaskGenerator(
     model=sam,
-    points_per_side=20,
+    points_per_side=42,
     points_per_batch=64,
     pred_iou_thresh=0.9, # The lower the threshold the more objects will pick up
     stability_score_thresh=0.96,
@@ -167,8 +167,10 @@ for mask in masks:
 # Plot the histogram of mask areas
 plt.figure(3, figsize=(10,10))
 plt.hist(list_mask_areas, bins=20, rwidth=0.7)
-plt.title('Mask histogram IMG ' + num_image)
-plt.xlabel('Mask area (sq. pixels)')
-plt.ylabel('Frequency')
-plt.savefig('results/histograms/' + num_image + '.jpg', dpi=300)
+# plt.title('Mask histogram IMG ' + num_image)
+plt.xlabel('Mask area (sq. pixels)', size=22)
+plt.ylabel('Frequency', size=22)
+plt.xticks(size=20)
+plt.yticks(size=20)
+plt.savefig('results/histograms/new/' + num_image + '.jpg', dpi=300)
 plt.show()
